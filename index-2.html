@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Estadística de Pesos de Alumnos</title>
+</head>
+<body>
+    <h1>Estadística de Pesos de Alumnos</h1>
+    <p>Ingrese los pesos de los alumnos (en kg), separados por comas:</p>
+    <textarea id="inputWeights" rows="5" cols="40"></textarea><br><br>
+    <button onclick="calcularEstadisticas()">Calcular Estadísticas</button>
+
+    <h2>Resultados:</h2>
+    <p>Alumnos de menos de 40kg: <span id="menosDe40"></span></p>
+    <p>Alumnos entre 40kg y 50kg: <span id="entre40y50"></span></p>
+    <p>Alumnos de más de 50kg y menos de 60kg: <span id="entre50y60"></span></p>
+    <p>Alumnos de más o igual a 60kg: <span id="masDe60"></span></p>
+
+    <script>
+        function calcularEstadisticas() {
+            const inputWeights = document.getElementById("inputWeights").value;
+            const weightsArray = inputWeights.split(",").map(weight => parseFloat(weight.trim()));
+            
+            let menosDe40 = 0;
+            let entre40y50 = 0;
+            let entre50y60 = 0;
+            let masDe60 = 0;
+
+            for (const weight of weightsArray) {
+                if (weight < 40) {
+                    menosDe40++;
+                } else if (weight >= 40 && weight < 50) {
+                    entre40y50++;
+                } else if (weight >= 50 && weight < 60) {
+                    entre50y60++;
+                } else {
+                    masDe60++;
+                }
+            }
+
+            document.getElementById("menosDe40").textContent = menosDe40;
+            document.getElementById("entre40y50").textContent = entre40y50;
+            document.getElementById("entre50y60").textContent = entre50y60;
+            document.getElementById("masDe60").textContent = masDe60;
+        }
+    </script>
+</body>
+</html>
